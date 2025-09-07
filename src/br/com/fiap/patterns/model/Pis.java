@@ -5,7 +5,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class Pis implements Imposto, PropertyChangeListener {
+public class Pis implements Imposto {
     private float aliquota = 0.06f;
     private float valorPis;
     private PropertyChangeSupport support;
@@ -21,13 +21,6 @@ public class Pis implements Imposto, PropertyChangeListener {
 
         if (valorPisAnterior != valorPis) {
             support.firePropertyChange("valorPis", valorPisAnterior, valorPis);
-        }
-    }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        if ("valorPis".equals(evt.getPropertyName())) {
-            System.out.println("Novo valor do PIS: de " + evt.getOldValue() + " para " + evt.getNewValue());
         }
     }
 
