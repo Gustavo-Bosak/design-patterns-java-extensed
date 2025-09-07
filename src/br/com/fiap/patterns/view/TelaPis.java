@@ -3,6 +3,7 @@ package br.com.fiap.patterns.view;
 import br.com.fiap.patterns.model.Pis;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.beans.PropertyChangeEvent;
@@ -25,8 +26,7 @@ public class TelaPis implements TelaImposto, PropertyChangeListener {
         frame.add("Center", txtValor);
 
         Panel panel = new Panel();
-        botaoCalcular = new Button();
-        botaoCalcular.addActionListener(e -> calcularImposto());
+        botaoCalcular = new Button("Calcular");
         panel.add(botaoCalcular);
         frame.add("South", panel);
         frame.addWindowListener(new CloseListener());
@@ -47,9 +47,8 @@ public class TelaPis implements TelaImposto, PropertyChangeListener {
         }
     }
 
-    private void calcularImposto() {
-        float valor = getValor();
-        pis.calcularImposto(valor);
+    public void addControler (ActionListener controller) {
+        botaoCalcular.addActionListener(controller);
     }
 
     public static class CloseListener extends WindowAdapter {
